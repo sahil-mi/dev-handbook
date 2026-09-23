@@ -38,8 +38,11 @@
 
 `Ctrl+B → Q` — detach
 
+## Save & Restore workspace
 
-## Save & Restore workspace [https://github.com/chandrasekharan98/herdr-workspace-save]
-`prefix + Shift + S` - Save
-`prefix + Alt + W` - Restore
+Plugin: [herdr-workspace-save](https://github.com/chandrasekharan98/herdr-workspace-save)
 
+| Action | Shortcut |
+|---|---|
+| Save | `prefix + Shift + S` |
+| Restore | `prefix + Alt + W` |

@@ -9,7 +9,8 @@ curl https://api.example.com/users
 ## Headers
 
 ```bash
-curl -H 'Authorization: Bearer TOKEN'   https://api.example.com/users
+curl -H 'Authorization: Bearer TOKEN' \
+  https://api.example.com/users
 ```
 
 Don't put real tokens in notes.
@@ -17,7 +18,9 @@ Don't put real tokens in notes.
 ## POST JSON
 
 ```bash
-curl -X POST https://api.example.com/users   -H 'Content-Type: application/json'   -d '{"name":"Sam"}'
+curl -X POST https://api.example.com/users \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Sam"}'
 ```
 
 ## Verbose
