@@ -1,0 +1,15 @@
+onboarding = false
+
+[theme]
+# Follow the host terminal's ANSI palette instead of a built-in scheme.
+# gnome-terminal now carries the Adapta Nokto Maia colors ported from
+# ~/.config/kitty/theme.conf, so Herdr inherits them directly.
+name = "terminal"
+
+[theme.custom]
+# Adapta Nokto Maia's color2/color10 are grey (#7E807E / #8D8F8D), not green.
+# Inherited verbatim that makes Herdr's agent-state indicators
+# (working / blocked / idle) nearly indistinguishable, so green is pinned to
+# the palette's own green-teal. Delete these two lines for strict fidelity.
+green = "#1ABB9B"
+accent = "#1ABB9B"
