@@ -37,3 +37,11 @@
 `Ctrl+B → B` — toggle sidebar
 
 `Ctrl+B → Q` — detach
+
+
+## Save & Restore workspace [https://github.com/chandrasekharan98/herdr-workspace-save]
+
+`prefix + Shift + S` - Save
+
+`prefix + Alt + W` - Restore
+
