@@ -40,8 +40,6 @@
 
 
 ## Save & Restore workspace [https://github.com/chandrasekharan98/herdr-workspace-save]
-
 `prefix + Shift + S` - Save
-
 `prefix + Alt + W` - Restore
 
