@@ -44,8 +44,34 @@ Leader key is `Space`. Press `Space` and wait to see available keys (which-key).
 | Repeat last change | `.` |
 | Indent / unindent | `>>` / `<<` |
 | Join lines | `J` |
-| Toggle comment | `gcc` (line), `gc` (visual) |
 | Move line down / up | `Alt+J` / `Alt+K` |
+
+## Copy & Paste
+
+`y` copies to the system clipboard too (LazyVim default), so you can paste outside nvim with `Ctrl+V`.
+
+| Action | Shortcut |
+|---|---|
+| Select, then copy | `v` / `V` → move → `y` |
+| Copy line / 5 lines | `yy` / `5yy` |
+| Copy inside `{ }` | `yi{` |
+| Copy whole file | `ggVGy` |
+| Cut selection | `d` (visual) |
+| Paste after / before | `p` / `P` |
+| Paste over selection | `p` (visual) |
+| Paste last copy again (after pasting over) | `"0p` |
+
+## Comments
+
+Uses the right style per file (`//`, `{/* */}` in JSX, `--`, `#`). Same keys uncomment.
+
+| Action | Shortcut |
+|---|---|
+| Toggle comment on line | `gcc` |
+| Toggle comment on selection | `V` → select → `gc` |
+| Toggle comment on 5 lines | `5gcc` |
+| Toggle comment inside `{ }` | `gci{` |
+| Add comment below / above | `gco` / `gcO` |
 
 ## Search & Replace
 
