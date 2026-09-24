@@ -27,4 +27,5 @@ Quick-reference notes for everyday commands and tools.
 
 - [curl](tools/curl.md) — requests, headers, JSON, timing
 - [jq](tools/jq.md) — filtering and transforming JSON
+- [Neovim](tools/nvim.md) — LazyVim motions, editing, search, buffers, LSP
 - [SSH](tools/ssh.md) — keys, config, scp, port forwarding
