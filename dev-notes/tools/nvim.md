@@ -90,20 +90,30 @@ Leader key is `Space`. Press `Space` and wait to see available keys (which-key).
 | Split below | `Space → -` |
 | Move between windows | `Ctrl+H/J/K/L` |
 | Close window | `Space → w → d` |
+| Close all other windows | `Ctrl+W → o` |
 | Resize | `Ctrl+Arrow keys` |
+| Open file in split right / below | `:vsplit file` / `:split file` |
 
 ## Code (LSP)
 
 | Action | Shortcut |
 |---|---|
-| Go to definition | `gd` |
+| Go to definition (opens the source file, works on imports) | `gd` |
+| Jump back after `gd` | `Ctrl+O` |
 | Find references | `gr` |
+| Functions / symbols in file | `Space → s → s` |
+| Symbols across project | `Space → s → S` |
+| Outline panel (toggle) | `Space → c → s` |
+| Next / previous function | `]f` / `[f` |
 | Hover docs | `K` |
 | Code action | `Space → c → a` |
 | Rename symbol | `Space → c → r` |
 | Format file | `Space → c → f` |
 | Next / previous diagnostic | `]d` / `[d` |
 | Line diagnostics | `Space → c → d` |
+
+LSP keys need a language server for the file type. If `gd` only jumps to the import line,
+enable the language in `:LazyExtras` (e.g. `lang.typescript`, `lang.python`) and restart.
 
 ## Git
 
@@ -112,6 +122,41 @@ Leader key is `Space`. Press `Space` and wait to see available keys (which-key).
 | Lazygit | `Space → g → g` |
 | Next / previous hunk | `]h` / `[h` |
 | Blame line | `Space → g → b` |
+| Side-by-side diff, current file | `Space → g → h → d` |
+| Diffview: all changes side by side (toggle) | `Space → g → v` |
+| Diffview: current file history | `Space → g → F` |
+
+## Diffview (inside diffview)
+
+| Action | Shortcut |
+|---|---|
+| Next / previous file | `Tab` / `Shift+Tab` |
+| Next / previous change | `]c` / `[c` |
+| Stage / unstage file | `-` (file panel) |
+| Focus / toggle file panel | `Space → e` / `Space → b` |
+| Help (all keys) | `g?` |
+| Close | `Space → g → v` or `:DiffviewClose` |
+
+## Lazygit (inside lazygit)
+
+| Action | Shortcut |
+|---|---|
+| Switch panel | `1`–`5` or `Tab` / `h` / `l` |
+| Move up / down | `k` / `j` |
+| Stage / unstage file | `Space` |
+| Stage / unstage all | `a` |
+| Stage lines or hunks | `Enter` on file, then `Space` (`v` to select a range) |
+| Discard changes | `d` |
+| Commit / commit in editor | `c` / `C` |
+| Amend last commit | `A` |
+| Push / pull / fetch | `P` / `p` / `f` |
+| New branch | `n` (branches panel) |
+| Checkout branch | `Space` (branches panel) |
+| Stash changes | `s` |
+| Undo last action | `z` |
+| Filter / search | `/` |
+| Back / quit | `Esc` / `q` |
+| Help (all keys) | `?` |
 
 ## Terminal
 
@@ -125,6 +170,7 @@ Leader key is `Space`. Press `Space` and wait to see available keys (which-key).
 | Action | Shortcut |
 |---|---|
 | Open file | `Enter` |
+| Open file in split right / below | `s` / `S` |
 | Add file / folder | `a` (end with `/` for folder) |
 | Delete / rename | `d` / `r` |
 | Copy / cut / paste | `c` / `x` / `p` |
