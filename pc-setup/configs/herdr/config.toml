@@ -6,6 +6,7 @@ onboarding = false
 # ~/.config/kitty/theme.conf, so Herdr inherits them directly.
 name = "terminal"
 
+auto_switch = false
 [theme.custom]
 # Adapta Nokto Maia's color2/color10 are grey (#7E807E / #8D8F8D), not green.
 # Inherited verbatim that makes Herdr's agent-state indicators
@@ -13,3 +14,24 @@ name = "terminal"
 # the palette's own green-teal. Delete these two lines for strict fidelity.
 green = "#1ABB9B"
 accent = "#1ABB9B"
+
+[ui.sound]
+enabled = true
+
+[ui.toast]
+delivery = "system"
+
+
+
+
+[[keys.command]]
+key = "prefix+shift+s"
+type = "plugin_action"
+command = "workspace-save.save"
+description = "save workspace"
+
+[[keys.command]]
+key = "prefix+alt+w"
+type = "plugin_action"
+command = "workspace-save.open"
+description = "open saved workspace"
