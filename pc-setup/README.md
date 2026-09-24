@@ -1,7 +1,7 @@
 # PC setup (terminal)
 
 Installs on a fresh Ubuntu/GNOME PC: zsh + oh-my-zsh, kitty (default terminal),
-herdr, neovim + LazyVim config, glow, JetBrainsMono/FiraCode Nerd Fonts, and
+herdr, neovim + LazyVim config, lazygit, glow, JetBrainsMono/FiraCode Nerd Fonts, and
 copies all configs (kitty theme, herdr, nvim, zshrc, gitconfig, GNOME Terminal colors).
 
 ## New PC

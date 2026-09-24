@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # One-shot terminal setup for a fresh Ubuntu/GNOME machine:
-# zsh + oh-my-zsh, kitty, herdr, neovim (LazyVim), Nerd Fonts, glow, configs.
+# zsh + oh-my-zsh, kitty, herdr, neovim (LazyVim), lazygit, Nerd Fonts, glow, configs.
 # Safe to re-run: existing configs are backed up to ~/.config-backup-<timestamp>.
 set -euo pipefail
 
@@ -66,6 +66,16 @@ if ! have nvim; then
   rm -rf "$HOME/.local/nvim"; mkdir -p "$HOME/.local/nvim"
   tar -xzf "$tmp/nvim.tar.gz" -C "$HOME/.local/nvim" --strip-components=1
   ln -sf "$HOME/.local/nvim/bin/nvim" "$BIN/nvim"
+  rm -rf "$tmp"
+fi
+
+step "lazygit"
+if ! have lazygit; then
+  tmp="$(mktemp -d)"
+  url="$(curl -fsSL https://api.github.com/repos/jesseduffield/lazygit/releases/latest \
+        | grep -o 'https://[^"]*lazygit_[^"]*_[Ll]inux_x86_64.tar.gz' | head -1)"
+  curl -fL "$url" | tar -xz -C "$tmp" lazygit
+  install -m755 "$tmp/lazygit" "$BIN/lazygit"
   rm -rf "$tmp"
 fi
 
