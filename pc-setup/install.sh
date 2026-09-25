@@ -18,6 +18,22 @@ mkdir -p "$BIN" "$HOME/.config" "$HOME/.local/share/applications" "$HOME/.local/
 
 step() { printf '\n\033[1;36m==> %s\033[0m\n' "$*"; }
 have() { command -v "$1" >/dev/null 2>&1; }
+# get <url> <dest> -- download, retrying everything including DNS failures.
+# Always writes to a file, never a pipe: a retry restarts the transfer from
+# byte 0, so streaming into tar/sh can hand them a partial body followed by a
+# complete one.
+get() { curl -fsSL --retry 5 --retry-all-errors --retry-delay 2 --connect-timeout 15 -o "$2" "$1"; }
+
+# gh_asset <owner/repo> <grep pattern> -- newest release asset URL matching pattern
+gh_asset() {
+  local json url
+  json="$(mktemp)"
+  get "https://api.github.com/repos/$1/releases/latest" "$json"
+  url="$(grep -o "$2" "$json" | head -1 || true)"
+  rm -f "$json"
+  [ -n "$url" ] || { echo "no asset matching $2 in latest $1 release" >&2; return 1; }
+  printf '%s\n' "$url"
+}
 
 # copy a file/dir into place, backing up whatever was there
 place() {
@@ -37,8 +53,10 @@ sudo apt-get install -y zsh git curl wget unzip fontconfig ripgrep fd-find build
 
 step "oh-my-zsh"
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  RUNZSH=no CHSH=no KEEP_ZSHRC=yes \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  tmp="$(mktemp -d)"
+  get https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh "$tmp/omz.sh"
+  RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh "$tmp/omz.sh"
+  rm -rf "$tmp"
 fi
 for p in zsh-autosuggestions zsh-syntax-highlighting; do
   d="$HOME/.oh-my-zsh/custom/plugins/$p"
@@ -47,7 +65,10 @@ done
 
 step "kitty"
 if [ ! -x "$HOME/.local/kitty.app/bin/kitty" ]; then
-  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+  tmp="$(mktemp -d)"
+  get https://sw.kovidgoyal.net/kitty/installer.sh "$tmp/kitty-installer.sh"
+  sh "$tmp/kitty-installer.sh" launch=n
+  rm -rf "$tmp"
 fi
 ln -sf "$HOME/.local/kitty.app/bin/kitty" "$HOME/.local/kitty.app/bin/kitten" "$BIN/"
 cp "$HOME/.local/kitty.app/share/applications/kitty.desktop" "$HOME/.local/share/applications/"
@@ -61,12 +82,17 @@ sudo update-alternatives --set x-terminal-emulator "$HOME/.local/kitty.app/bin/k
 printf 'kitty.desktop\n' > "$HOME/.config/xdg-terminals.list"
 
 step "herdr"
-have herdr || curl -fsSL https://herdr.dev/install.sh | sh
+if ! have herdr; then
+  tmp="$(mktemp -d)"
+  get https://herdr.dev/install.sh "$tmp/herdr.sh"
+  sh "$tmp/herdr.sh"
+  rm -rf "$tmp"
+fi
 
 step "neovim"
 if ! have nvim; then
   tmp="$(mktemp -d)"
-  curl -fL -o "$tmp/nvim.tar.gz" https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  get https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz "$tmp/nvim.tar.gz"
   rm -rf "$HOME/.local/nvim"; mkdir -p "$HOME/.local/nvim"
   tar -xzf "$tmp/nvim.tar.gz" -C "$HOME/.local/nvim" --strip-components=1
   ln -sf "$HOME/.local/nvim/bin/nvim" "$BIN/nvim"
@@ -76,9 +102,9 @@ fi
 step "lazygit"
 if ! have lazygit; then
   tmp="$(mktemp -d)"
-  url="$(curl -fsSL https://api.github.com/repos/jesseduffield/lazygit/releases/latest \
-        | grep -o 'https://[^"]*lazygit_[^"]*_[Ll]inux_x86_64.tar.gz' | head -1)"
-  curl -fL "$url" | tar -xz -C "$tmp" lazygit
+  url="$(gh_asset jesseduffield/lazygit 'https://[^"]*lazygit_[^"]*_[Ll]inux_x86_64.tar.gz')"
+  get "$url" "$tmp/lazygit.tar.gz"
+  tar -xzf "$tmp/lazygit.tar.gz" -C "$tmp" lazygit
   install -m755 "$tmp/lazygit" "$BIN/lazygit"
   rm -rf "$tmp"
 fi
@@ -86,9 +112,9 @@ fi
 step "glow"
 if ! have glow; then
   tmp="$(mktemp -d)"
-  url="$(curl -fsSL https://api.github.com/repos/charmbracelet/glow/releases/latest \
-        | grep -o 'https://[^"]*glow_[^"]*_Linux_x86_64.tar.gz' | head -1)"
-  curl -fL "$url" | tar -xz -C "$tmp"
+  url="$(gh_asset charmbracelet/glow 'https://[^"]*glow_[^"]*_Linux_x86_64.tar.gz')"
+  get "$url" "$tmp/glow.tar.gz"
+  tar -xzf "$tmp/glow.tar.gz" -C "$tmp"
   find "$tmp" -type f -name glow -exec install -m755 {} "$BIN/glow" \;
   rm -rf "$tmp"
 fi
@@ -97,7 +123,7 @@ step "Nerd Fonts (JetBrainsMono, FiraCode)"
 for font in JetBrainsMono FiraCode; do
   if ! fc-list | grep -qi "${font}.*Nerd"; then
     tmp="$(mktemp -d)"
-    curl -fL -o "$tmp/f.zip" "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip"
+    get "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${font}.zip" "$tmp/f.zip"
     unzip -oq "$tmp/f.zip" '*.ttf' -d "$HOME/.local/share/fonts"
     rm -rf "$tmp"
   fi
