@@ -151,6 +151,15 @@ enable the language in `:LazyExtras` (e.g. `lang.typescript`, `lang.python`) and
 | Side-by-side diff, current file | `Space → g → h → d` |
 | Diffview: all changes side by side (toggle) | `Space → g → v` |
 | Diffview: current file history | `Space → g → F` |
+| Diffview: branch vs another branch, all changed files (like a merge request) | `Space → g → m` |
+
+Compare branches with commands:
+
+| Compare | Command |
+|---|---|
+| Only what this branch added since it split from `main` (MR view) | `:DiffviewOpen main...HEAD` |
+| Current files (incl. uncommitted) vs `main` | `:DiffviewOpen main` |
+| Any two branches | `:DiffviewOpen branch-a..branch-b` |
 
 ## Diffview (inside diffview)
 
@@ -179,6 +188,7 @@ enable the language in `:LazyExtras` (e.g. `lang.typescript`, `lang.python`) and
 | New branch | `n` (branches panel) |
 | Checkout branch | `Space` (branches panel) |
 | Stash changes | `s` |
+| Compare with a branch (diff mode) | `W` on branch (branches panel) → Diff; `W` → Exit to stop |
 | Undo last action | `z` |
 | Filter / search | `/` |
 | Back / quit | `Esc` / `q` |
