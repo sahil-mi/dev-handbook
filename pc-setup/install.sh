@@ -139,8 +139,15 @@ place "$CFG/zshrc"          "$HOME/.zshrc"
 [ -f "$HOME/.gitconfig" ] || place "$CFG/gitconfig" "$HOME/.gitconfig"
 have dconf && dconf load /org/gnome/terminal/ < "$CFG/gnome/terminal.dconf" || true
 
-step "LazyVim plugins (headless)"
-nvim --headless "+Lazy! sync" +qa 2>/dev/null || echo "  (will finish on first nvim launch)"
+step "LazyVim plugins (headless, pinned to lazy-lock.json)"
+# First pass installs missing plugins but lazy.nvim rewrites lazy-lock.json with
+# whatever it cloned; put the repo's lockfile back and restore again to pin them.
+if nvim --headless "+Lazy! restore" +qa 2>/dev/null; then
+  cp "$CFG/nvim/lazy-lock.json" "$HOME/.config/nvim/lazy-lock.json"
+  nvim --headless "+Lazy! restore" +qa 2>/dev/null || true
+else
+  echo "  (will finish on first nvim launch)"
+fi
 
 step "Default shell -> zsh"
 [ "$(getent passwd "$USER" | cut -d: -f7)" = "$(command -v zsh)" ] || sudo chsh -s "$(command -v zsh)" "$USER"
