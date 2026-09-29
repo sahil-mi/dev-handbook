@@ -36,6 +36,7 @@ Leader key is `Space`. Press `Space` and wait to see available keys (which-key).
 | Delete char | `x` |
 | Delete / yank / change line | `dd` / `yy` / `cc` |
 | Delete / change word | `dw` / `cw` |
+| Delete / change / copy whole word under cursor | `diw` / `ciw` / `yiw` |
 | Delete / change inside quotes | `di"` / `ci"` |
 | Delete / change inside brackets | `di(` / `ci{` |
 | Delete to end of line | `D` |
@@ -45,6 +46,28 @@ Leader key is `Space`. Press `Space` and wait to see available keys (which-key).
 | Indent / unindent | `>>` / `<<` |
 | Join lines | `J` |
 | Move line down / up | `Alt+J` / `Alt+K` |
+
+## Selecting
+
+Start with `v` (from cursor), `V` (whole lines) or `Ctrl+V` (column block), then move to extend.
+
+| Action | Shortcut |
+|---|---|
+| Word under cursor | `viw` |
+| Word + trailing space | `vaw` |
+| Word with symbols (`foo.bar-baz`, URLs) | `viW` |
+| Cursor to end of word / next word / word start | `ve` / `vw` / `vb` |
+| Extend by one more word | `e` or `w` (visual) |
+| Current line + 4 below | `V4j` |
+| From cursor down / up | `V` → `j` / `k` |
+| From cursor to next blank line | `v}` or `V}` |
+| From cursor to text match | `v/text` → `Enter` |
+| Cursor line to end / top of file | `VG` / `Vgg` |
+| Current paragraph | `vip` |
+| Inside `{ }` / `( )` / quotes | `vi{` / `vi(` / `vi"` |
+| Whole file | `ggVG` |
+| Swap selection end (extend other side) | `o` (visual) |
+| Reselect last selection | `gv` |
 
 ## Copy & Paste
 
