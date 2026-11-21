@@ -157,12 +157,35 @@ Uses the right style per file (`//`, `{/* */}` in JSX, `--`, `#`). Same keys unc
 | Hover docs | `K` |
 | Code action | `Space → c → a` |
 | Rename symbol | `Space → c → r` |
-| Format file | `Space → c → f` |
+| Format file (Prettier, see [prettier.md](prettier.md)) | `Space → c → f` |
 | Next / previous diagnostic | `]d` / `[d` |
 | Line diagnostics | `Space → c → d` |
 
 LSP keys need a language server for the file type. If `gd` only jumps to the import line,
 enable the language in `:LazyExtras` (e.g. `lang.typescript`, `lang.python`) and restart.
+
+## HTML / JSX helpers
+
+Works in `.html`, `.css`, and HTML inside `.jsx` / `.tsx`. Config: `lua/plugins/web.lua` + `lang.tailwind` extra.
+
+| Action | How |
+|---|---|
+| Emmet expand | type `div.box>p*3`, pick the Emmet item from the menu → `Enter` |
+| Auto-close tag | type `<div>` → `</div>` added automatically |
+| Rename tag pair | change the opening tag name, closing tag follows |
+| Tailwind class completion | type inside `className=""` (needs Tailwind in the project) |
+| Accept / next / previous completion | `Enter` / `Ctrl+N` / `Ctrl+P` |
+| Open completion menu | `Ctrl+Space` |
+
+Emmet examples:
+
+| Type | Expands to |
+|---|---|
+| `div.card` | `<div className="card"></div>` (`class` in `.html`) |
+| `ul>li*3` | list with 3 items |
+| `a[href=#]` | `<a href="#"></a>` |
+| `section>h2+p` | section with heading and paragraph |
+| `!` (in `.html`) | full HTML page skeleton |
 
 ## Git
 
