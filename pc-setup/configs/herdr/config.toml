@@ -1,24 +1,21 @@
 onboarding = false
 
 [theme]
-# Moonfly has no built-in Herdr theme, so follow kitty's ANSI palette
-# (kitty/moonfly.conf: near-black #080808, white text, real green).
+# Adapta Nokto Maia: follow kitty's ANSI palette (kitty/adapta-nokto-maia.conf).
 name = "terminal"
 auto_switch = false
 
 [theme.custom]
-# Moonfly green as the highlight colour.
-accent = "#8cc85f"
+# Adapta's color2/color10 are grey, not green, which makes agent-state
+# indicators hard to tell apart, so green is pinned to its green-teal.
+green = "#1ABB9B"
+accent = "#1ABB9B"
 
 # --- Other themes kept for switching back ---
+# Moonfly (kitty/moonfly.conf):
+#   name = "terminal", and replace [theme.custom] with: accent = "#8cc85f"
 # Catppuccin Mocha (kitty/catppuccin-mocha.conf):
-#   name = "catppuccin", and in [theme.custom]: accent = "#89b4fa"
-# Adapta Nokto Maia (kitty/adapta-nokto-maia.conf):
-#   name = "terminal", and replace [theme.custom] with:
-#   # Adapta's color2/color10 are grey, not green, which makes agent-state
-#   # indicators hard to tell apart, so green is pinned to its green-teal.
-#   green = "#1ABB9B"
-#   accent = "#1ABB9B"
+#   name = "catppuccin", and replace [theme.custom] with: accent = "#89b4fa"
 
 # --- Pixel HQ-inspired UI (github.com/bnhan2710/pixel-hq), terminal edition ---
 [ui]

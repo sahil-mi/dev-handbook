@@ -22,6 +22,7 @@ Quick-reference notes for everyday commands and tools.
 ## Terminal
 
 - [Herdr](terminal/herdr.md) — workspace, tab, and pane shortcuts
+- [Themes](terminal/themes.md) — switch and add color themes (kitty, herdr, nvim, GNOME Terminal)
 
 ## Tools
 

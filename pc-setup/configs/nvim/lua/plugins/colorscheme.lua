@@ -1,7 +1,6 @@
--- Moonfly: near-black background, white text, vivid green. Matches
--- kitty (moonfly.conf) and herdr.
--- Other options kept installed: "catppuccin" (Mocha) and "tokyonight"
--- (LazyVim default). Change colorscheme below to switch.
+-- Active: "tokyonight" (LazyVim default), paired with kitty Adapta Nokto Maia.
+-- Also installed: "moonfly" (pairs with kitty moonfly.conf) and "catppuccin"
+-- (Mocha, pairs with catppuccin-mocha.conf). Change colorscheme below to switch.
 return {
   {
     "bluz71/vim-moonfly-colors",
@@ -16,6 +15,6 @@ return {
   },
   {
     "LazyVim/LazyVim",
-    opts = { colorscheme = "moonfly" },
+    opts = { colorscheme = "tokyonight" },
   },
 }
