@@ -133,6 +133,7 @@ fc-cache -f >/dev/null
 step "Copying configs"
 place "$CFG/kitty"          "$HOME/.config/kitty"
 place "$CFG/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+place "$CFG/herdr/team-status.py" "$HOME/.config/herdr/team-status.py"
 place "$CFG/nvim"           "$HOME/.config/nvim"
 place "$CFG/glow"           "$HOME/.config/glow"
 place "$CFG/zshrc"          "$HOME/.zshrc"

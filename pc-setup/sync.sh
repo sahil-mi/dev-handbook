@@ -4,7 +4,7 @@
 set -euo pipefail
 CFG="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/configs"
 cp ~/.config/kitty/kitty.conf ~/.config/kitty/theme.conf "$CFG/kitty/"
-cp ~/.config/herdr/config.toml "$CFG/herdr/"
+cp ~/.config/herdr/config.toml ~/.config/herdr/team-status.py "$CFG/herdr/"
 cp ~/.config/glow/glow.yml "$CFG/glow/"
 rsync -a --delete --exclude .git ~/.config/nvim/ "$CFG/nvim/"
 cp ~/.gitconfig "$CFG/gitconfig"

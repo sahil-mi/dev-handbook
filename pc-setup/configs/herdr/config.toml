@@ -15,6 +15,29 @@ auto_switch = false
 green = "#1ABB9B"
 accent = "#1ABB9B"
 
+# --- Pixel HQ-inspired UI (github.com/bnhan2710/pixel-hq), terminal edition ---
+[ui]
+# "Desk nameplates": agent name on split pane borders.
+show_agent_labels_on_pane_borders = true
+# Status chips: distinct glyphs for blocked / working / done / idle, not just dots.
+status_indicators = "symbols"
+# "Needs you, one list": waiting agents float to the top of the agent panel.
+agent_panel_sort = "priority"
+# Team status bar + office clock at the right of the tab bar.
+tab_bar_right = [
+  { type = "command", command = "~/.config/herdr/team-status.py", interval_seconds = 3, timeout_seconds = 2 },
+  { type = "datetime", format = "%H:%M" },
+]
+tab_bar_right_separator = "  │  "
+
+[ui.sidebar.agents]
+# Nameplate: who + live status chip, then where, then what it is working on.
+rows = [
+  ["state_icon", "agent", "state_text"],
+  ["workspace", "tab"],
+  ["terminal_title_stripped"],
+]
+
 [ui.sound]
 enabled = true
 
