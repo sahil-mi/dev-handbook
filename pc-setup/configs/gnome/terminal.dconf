@@ -1,3 +1,47 @@
+[legacy/profiles:]
+default='16bf2dd1-13f2-4139-81bf-00cd20360224'
+list=['b1dcc9dd-5262-4d8d-a863-c897e6d979b9', '3fe387ff-7b6e-40c9-879c-5a34a18656ca', '16bf2dd1-13f2-4139-81bf-00cd20360224']
+
+[legacy/profiles:/:16bf2dd1-13f2-4139-81bf-00cd20360224]
+background-color='rgb(8,8,8)'
+bold-color-same-as-fg=true
+bold-is-bright=false
+cursor-background-color='rgb(158,158,158)'
+cursor-blink-mode='on'
+cursor-colors-set=true
+cursor-foreground-color='rgb(8,8,8)'
+cursor-shape='block'
+font='Liberation Mono 12'
+foreground-color='rgb(189,189,189)'
+highlight-background-color='rgb(178,206,238)'
+highlight-colors-set=true
+highlight-foreground-color='rgb(8,8,8)'
+palette=['rgb(50,52,55)', 'rgb(255,93,93)', 'rgb(140,200,95)', 'rgb(227,199,138)', 'rgb(128,160,255)', 'rgb(207,135,232)', 'rgb(121,218,200)', 'rgb(198,198,198)', 'rgb(148,148,148)', 'rgb(255,81,137)', 'rgb(54,198,146)', 'rgb(198,198,132)', 'rgb(116,178,255)', 'rgb(174,129,255)', 'rgb(133,220,133)', 'rgb(228,228,228)']
+scrollback-lines=10000
+use-system-font=false
+use-theme-colors=false
+visible-name='Moonfly'
+
+[legacy/profiles:/:3fe387ff-7b6e-40c9-879c-5a34a18656ca]
+background-color='rgb(30,30,46)'
+bold-color-same-as-fg=true
+bold-is-bright=false
+cursor-background-color='rgb(245,224,220)'
+cursor-blink-mode='on'
+cursor-colors-set=true
+cursor-foreground-color='rgb(30,30,46)'
+cursor-shape='block'
+font='Liberation Mono 12'
+foreground-color='rgb(205,214,244)'
+highlight-background-color='rgb(88,91,112)'
+highlight-colors-set=true
+highlight-foreground-color='rgb(205,214,244)'
+palette=['rgb(69,71,90)', 'rgb(243,139,168)', 'rgb(166,227,161)', 'rgb(249,226,175)', 'rgb(137,180,250)', 'rgb(245,194,231)', 'rgb(148,226,213)', 'rgb(186,194,222)', 'rgb(88,91,112)', 'rgb(243,139,168)', 'rgb(166,227,161)', 'rgb(249,226,175)', 'rgb(137,180,250)', 'rgb(245,194,231)', 'rgb(148,226,213)', 'rgb(166,173,200)']
+scrollback-lines=10000
+use-system-font=false
+use-theme-colors=false
+visible-name='Catppuccin Mocha'
+
 [legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 background-color='rgb(23,20,33)'
 background-transparency-percent=8
@@ -19,3 +63,4 @@ use-system-font=false
 use-theme-colors=false
 use-theme-transparency=true
 use-transparent-background=true
+visible-name='Default'
